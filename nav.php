@@ -12,6 +12,20 @@
 		<li class="nav-item">
 			<a class="nav-link" href="create.php" padding-right: 30px;>Create New Listing</a>
 		</li>
+		<?php 
+			if (isset($_SESSION)) {
+				echo '<li class="nav-item">
+						  <a class="nav-link" href="signout.php" padding-right: 30px;>Sign Out</a>
+					  </li>';
+			} else {
+				echo '<li class="nav-item">
+						  <a class="nav-link" href="signup.php" padding-right: 30px;>Sign Up</a>
+					  </li>
+					  <li class="nav-item">
+						  <a class="nav-link" href="signin.php" padding-right: 30px;>Sign In</a>
+					  </li>';
+			}
+		?>
 	  </ul>
 	</div>
 </nav>
