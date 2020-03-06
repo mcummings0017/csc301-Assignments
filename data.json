@@ -3,7 +3,7 @@
         "name": "Toyota Camry 2017",
         "address": "8400 I-10 Service Road, New Orleans, LA 70127, United States of America",
         "picture": "img\/camry.jpg",
-        "price": 12999,
+        "price": 13000,
         "description": "Like new Toyota Camry 2017.  One owner, price negotiable.  Please contact Alex at 859-111-1111 for more information."
     },
     {
@@ -29,7 +29,7 @@
     },
     {
         "name": "Ford Mustang 2019",
-        "address": "address 3",
+        "address": "address 4",
         "picture": "img\/mustang.jpg",
         "price": 29999,
         "description": "Brand new Ford Mustang 2019.  Please contact a representative at Ford motors Florence 859-111-1111 for more information."

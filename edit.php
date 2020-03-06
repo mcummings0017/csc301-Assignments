@@ -4,7 +4,8 @@ require_once('JSONutility.php');
 $filename='data.json';
 $id=$_GET['id'];
 $listings=jsonToArray($filename);
-if(!empty($id) && $id>=0 && $id<count($listings)) {
+
+if(is_numeric($id) && $id>=0 && $id<count($listings)) {
 	if(!empty($_POST["name"]) 
 		&& !empty($_POST["address"])
 		&& !empty($_POST["picture"])
