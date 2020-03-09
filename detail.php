@@ -5,6 +5,7 @@ if(!isset($_GET['id'])){
 
 require_once('functions.php');
 $listings=jsonToArray('data.json');
+$title='Details';
 require_once('header.php');
 require_once('nav.php');
 

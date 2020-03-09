@@ -1,7 +1,14 @@
 <?php
-session_start();
-$email=$_SESSION["email"];
-session_unset();
-session_destroy();
-die($email.' Successfully signed out!  Go back to the <a href="index.php">Home page</a>');
+require_once('auth_functions.php');
+
+if(is_logged('user/uID')) {
+	signout('index.php');
+} else {
+	header('location:signin.php');
+}
+
+require_once('header.php');
+echo 'You just signed out';
+
+require_once('footer.php');
 ?>

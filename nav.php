@@ -1,3 +1,4 @@
+<?php require_once('auth_functions.php'); ?>
 <!-- Image and text -->
 <nav class="navbar navbar-expand navbar-light bg-danger text-white list-style-type-none">
   <a class="navbar-brand text-white" href="#">
@@ -13,9 +14,12 @@
 			<a class="nav-link" href="create.php" padding-right: 30px;>Create New Listing</a>
 		</li>
 		<?php 
-			if (isset($_SESSION)) {
+			if (is_logged('user/uID')) {
 				echo '<li class="nav-item">
 						  <a class="nav-link" href="signout.php" padding-right: 30px;>Sign Out</a>
+					  </li>
+					  <li class="nav-item">
+						  <a class="nav-link" href="private.php" padding-right: 30px;>Private</a>
 					  </li>';
 			} else {
 				echo '<li class="nav-item">
