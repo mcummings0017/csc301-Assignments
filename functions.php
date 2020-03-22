@@ -12,4 +12,22 @@ function read($filename) {
 	fclose($handle);
 	return $temp;
 }
+
+require_once('class/Listing.php');
+
+function getArrayOfListings($filename) {
+	$array=jsonToArray($filename);
+	$newArray=array();
+
+	for($i=0;$i<count($array);$i++){
+		$listing=new Listing();
+		$listing->name=$array[$i]['name'];
+		$listing->address=$array[$i]['address'];
+		$listing->picture=$array[$i]['picture'];
+		$listing->price=$array[$i]['price'];
+		$listing->description=$array[$i]['description'];
+		array_push($newArray, $listing);
+	}
+	return $newArray;
+}
 ?>

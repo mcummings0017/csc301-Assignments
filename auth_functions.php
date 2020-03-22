@@ -1,5 +1,7 @@
 <?php
 
+require_once('class/User.php');
+
 session_start();
 
 function signup($database_file,$success_URL){
@@ -41,7 +43,7 @@ function signup($database_file,$success_URL){
 		
 		// Store data in db
 		$h=fopen($database_file,'a+');
-		fwrite($h,$_POST['email'].';'.$_POST['password'].PHP_EOL);
+		fwrite($h,$_POST['email'].';'.$_POST['password'].';'.'user'.PHP_EOL);
 		fclose($h);
 		header('location: '.$success_URL);
 	}
@@ -84,6 +86,7 @@ function signin($database_file,$user_key,$success_URL){
 				}
 				$_SESSION[$user_key]=$userid;
 				$_SESSION['email']=$_POST['email'];
+				$_SESSION['user']=serialize(New User(trim($line[0]),trim($line[2])));
 				header('location:'.$success_URL);
 			}
 			$userid++;
@@ -110,3 +113,14 @@ function is_logged($user_key){
 	}
 	return false;
 }
+
+function getUser() {
+	return unserialize($_SESSION['user']);
+}
+
+
+
+
+
+
+?>
