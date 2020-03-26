@@ -14,7 +14,7 @@
 			<a class="nav-link" href="create.php" padding-right: 30px;>Create New Listing</a>
 		</li>
 		<?php 
-			if (is_logged('user/uID')) {
+			if (Auth::is_logged('user/uID')) {
 				echo '<li class="nav-item">
 						  <a class="nav-link" href="signout.php" padding-right: 30px;>Sign Out</a>
 					  </li>

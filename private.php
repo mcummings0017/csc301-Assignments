@@ -1,13 +1,13 @@
 <?php
 $title="Private";
 require_once('auth_functions.php');
-if(!is_logged('user/uID')) {
+if(!Auth::is_logged('user/uID')) {
 	header('location: signin.php');
 }
 
 require_once('header.php');
 //print_r($_SESSION['email']);
-$user=getUser();
+$user=Auth::getUser();
 echo $user->email.' '.$user->accountType;
 
 echo '<br />';

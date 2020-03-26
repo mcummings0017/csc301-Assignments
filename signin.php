@@ -1,12 +1,12 @@
 <?php
 $title='Signup';
 require_once('auth_functions.php');
-if(is_logged('user/uID')) {
+if(Auth::is_logged('user/uID')) {
 	header('location: private.php');
 }
 
 if(count($_POST)>0){
-	$error=signin('data/users.csv.php','user/uID','private.php');
+	$error=Auth::signin('data/users.csv.php','user/uID','private.php');
 	if(isset($error{0})) {
 		echo '<div class="alert alert-danger" role="alert">'.$error.'</div>';
 	} else {

@@ -1,8 +1,8 @@
 <?php
 require_once('auth_functions.php');
 
-if(is_logged('user/uID')) {
-	signout('index.php');
+if(Auth::is_logged('user/uID')) {
+	Auth::signout('index.php');
 } else {
 	header('location:signin.php');
 }
