@@ -1,7 +1,7 @@
 <?php
-
-require_once('JSONutility.php');
-$filename='data.json';
+require_once('settings.php');
+require_once($root.'/func/JSONutility.php');
+$filename='data/data.json';
 $id=$_GET['id'];
 $listings=jsonToArray($filename);
 

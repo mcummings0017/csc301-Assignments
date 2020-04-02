@@ -1,11 +1,13 @@
 <?php
-require_once('JSONutility.php');
+require_once('settings.php');
+require_once($root.'/func/JSONutility.php');
+$file = 'data/data.json';
 if(!empty($_POST["name"]) 
 	&& !empty($_POST["address"])
 	&& !empty($_POST["picture"])
 	&& !empty($_POST["price"])
 	&& !empty($_POST["description"])) {
-		$listings=jsonToArray('data.json');
+		$listings=jsonToArray($file);
 		$data=array(
 			"name"  => $_POST["name"],
 			"address" => $_POST["address"],
@@ -14,7 +16,7 @@ if(!empty($_POST["name"])
 			"description" => $_POST["description"]
 		);
 		array_push($listings, $data);
-		writeAllJSON('data.json',$listings);
+		writeAllJSON($file,$listings);
 		
 		die("Listing created for ".$_POST["name"].'!  Go back to the <a href="index.php">Home page</a>');
 } else {

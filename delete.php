@@ -1,6 +1,7 @@
 <?php
-require_once('JSONutility.php');
-$filename='data.json';
+require_once('settings.php');
+require_once($root.'/func/JSONutility.php');
+$filename='data/data.json';
 if(!empty($_POST["id"])) {
 	deleteJSON($filename,$_POST["id"]);
 	echo "Listing ".$_POST["name"]." was deleted!";

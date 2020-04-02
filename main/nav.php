@@ -1,4 +1,4 @@
-<?php require_once('auth_functions.php'); ?>
+<?php require_once($root.'/auth/auth_functions.php'); ?>
 <!-- Image and text -->
 <nav class="navbar navbar-expand navbar-light bg-danger text-white list-style-type-none">
   <a class="navbar-brand text-white" href="#">
@@ -16,17 +16,17 @@
 		<?php 
 			if (Auth::is_logged('user/uID')) {
 				echo '<li class="nav-item">
-						  <a class="nav-link" href="signout.php" padding-right: 30px;>Sign Out</a>
+						  <a class="nav-link" href="auth/signout.php" padding-right: 30px;>Sign Out</a>
 					  </li>
 					  <li class="nav-item">
-						  <a class="nav-link" href="private.php" padding-right: 30px;>Private</a>
+						  <a class="nav-link" href="auth/private.php" padding-right: 30px;>Private</a>
 					  </li>';
 			} else {
 				echo '<li class="nav-item">
-						  <a class="nav-link" href="signup.php" padding-right: 30px;>Sign Up</a>
+						  <a class="nav-link" href="auth/signup.php" padding-right: 30px;>Sign Up</a>
 					  </li>
 					  <li class="nav-item">
-						  <a class="nav-link" href="signin.php" padding-right: 30px;>Sign In</a>
+						  <a class="nav-link" href="auth/signin.php" padding-right: 30px;>Sign In</a>
 					  </li>';
 			}
 		?>

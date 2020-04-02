@@ -1,6 +1,5 @@
 <?php
-
-require_once('class/User.php');
+require_once($root.'/class/User.php');
 
 session_start();
 

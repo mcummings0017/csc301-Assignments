@@ -1,12 +1,13 @@
 <?php
 $title='Signup';
-require_once('auth_functions.php');
+require_once('../settings.php');
+require_once($root.'/auth/auth_functions.php');
 if(Auth::is_logged('user/uID')) {
 	header('location: private.php');
 }
 
 if(count($_POST)>0){
-	$error=Auth::signin('data/users.csv.php','user/uID','private.php');
+	$error=Auth::signin($root.'/data/users.csv.php','user/uID','private.php');
 	if(isset($error{0})) {
 		echo '<div class="alert alert-danger" role="alert">'.$error.'</div>';
 	} else {
@@ -14,13 +15,13 @@ if(count($_POST)>0){
 	}
 }
 
-require_once('header.php');
+require_once($root.'/main/header.php');
 
 ?>
 
 <title>Signin</title>
 
-<form action="signin.php" method="POST">
+<form action="auth/signin.php" method="POST">
 	E-mail
 	<input type="email" name="email" required /><br />
 	Password
@@ -28,4 +29,4 @@ require_once('header.php');
 	<button type="submit">Sign In</button>
 
 </form>
-<?php require_once('footer.php'); ?>
+<?php require_once($root.'/main/footer.php'); ?>

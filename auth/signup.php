@@ -1,25 +1,26 @@
 <?php
 $title='Signup';
-require_once('auth_functions.php');
+require_once('../settings.php');
+require_once($root.'/auth/auth_functions.php');
 if(Auth::is_logged('user/uID')) {
-	header('location: index.php');
+	header('location: '.$http_root.'index.php');
 }
 
 if(count($_POST)>0){
-	$error=Auth::signup('data/users.csv.php','signin.php');
+	$error=Auth::signup($root.'/data/users.csv.php','signin.php');
 	if(isset($error{0})) echo '<div class="alert alert-danger" role="alert">'.$error.'</div>';
 	else echo '<div class="alert alert-success" role="alert">You made it!!!!!!!!!!!</div>';
 }
 
-require_once('header.php');
+require_once($root.'/main/header.php');
 
 ?>
 
-<form action="signup.php" method="POST">
+<form action="auth/signup.php" method="POST">
 	E-mail
 	<input type="email" name="email" required /><br />
 	Password
 	<input type="password" name="password" minlength="8" required /><br />
 	<button type="submit">Ceate account</button>
 </form>
-<?php require_once('footer.php'); ?>
+<?php require_once($root.'/main/footer.php'); ?>

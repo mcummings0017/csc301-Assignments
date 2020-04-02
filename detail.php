@@ -3,12 +3,13 @@ if(!isset($_GET['id'])){
 	die('No id: Please provide a valid id number!  Go back to the <a href="index.php">Home page</a>');
 }
 
-require_once('functions.php');
-//$listings=jsonToArray('data.json');
-$newListings=getArrayOfListings('data.json');
+require_once('settings.php');
+require_once($root.'/func/functions.php');
+
+$newListings=getArrayOfListings($root.'/data/data.json');
 $title='Details';
-require_once('header.php');
-require_once('nav.php');
+require_once($root.'/main/header.php');
+require_once($root.'/main/nav.php');
 
 if(!is_numeric($_GET['id']) || $_GET['id']<0 || $_GET['id']>=count($newListings)){
 	die('Invalid: go back to the <a href="index.php">Home page</a>');
@@ -25,6 +26,6 @@ if(!is_numeric($_GET['id']) || $_GET['id']<0 || $_GET['id']>=count($newListings)
 	<div class="container">
 	</div>
 <?php
-require_once('footer.php');
+require_once($root.'/main/footer.php');
 ?>
 
