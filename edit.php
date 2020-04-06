@@ -1,17 +1,23 @@
 <?php
 require_once('settings.php');
-require_once($root.'/func/JSONutility.php');
-$filename='data/data.json';
+require_once($root.'/func/DB.php');
+//$filename='data/data.json';
 $id=$_GET['id'];
-$listings=jsonToArray($filename);
+//$listings=jsonToArray($filename);
+$record=DB::DB_getListing($id);
 
-if(is_numeric($id) && $id>=0 && $id<count($listings)) {
-	if(!empty($_POST["name"]) 
+if(!is_numeric($_GET['id']) || $_GET['id']<0 || $record->rowCount()==0){
+	die('Invalid: go back to the <a href="index.php">Home page</a>');
+}
+
+if(is_numeric($id) && $id>=0) {
+	if(!empty($_POST["name"])
+		&& !empty($_POST["type"])
 		&& !empty($_POST["address"])
 		&& !empty($_POST["picture"])
 		&& !empty($_POST["price"])
 		&& !empty($_POST["description"])) {
-			$data=array(
+			/*$data=array(
 				"name"  => $_POST["name"],
 				"address" => $_POST["address"],
 				"picture" => $_POST["picture"],
@@ -19,6 +25,18 @@ if(is_numeric($id) && $id>=0 && $id<count($listings)) {
 				"description" => $_POST["description"]
 			);
 			modifyJSON($filename,$id,$data);
+			*/
+			require_once($root.'/class/Listing.php');
+			$newListing=new Listing();
+			$newListing->ID=$id;
+			$newListing->name=$_POST["name"];
+			$newListing->type=$_POST["type"];
+			$newListing->address=$_POST["address"];
+			$newListing->picture=$_POST["picture"];
+			$newListing->price=floatval($_POST["price"]);
+			$newListing->description=$_POST["description"];
+			
+			$newListing->modifyListing();
 			
 			//echo "Listing updated for ".$_POST["name"];
 			die("Listing updated for ".$_POST["name"].'!  Go back to the <a href="index.php">Home page</a>');
@@ -26,6 +44,17 @@ if(is_numeric($id) && $id>=0 && $id<count($listings)) {
 		echo "Please fill out all information below!";
 	}
 }
+
+$listing=DB::DB_createListing($record);
+
+function checkType($type) {
+	print_r($listing->type);
+	if($listing->type==$type) {
+		return true;
+	}
+	return false;
+}
+
 
 ?>
 <!doctype html>
@@ -37,19 +66,27 @@ if(is_numeric($id) && $id>=0 && $id<count($listings)) {
 		
 		<form action="<?= 'edit.php?id='.$id ?>" method="post">
 		<p><label for="name">Name: </label>
-		<input type="text" name="name" id="inputName" value="<?= $listings[$id]['name'] ?>">
+		<input type="text" name="name" id="inputName" value="<?= $listing->name ?>" required>
+		</p>
+		 <p><label for="type">Type: </label>
+		  <select name="type" id="inputType" required>
+			<option value="Car" <?=$listing->type == 'Car' ? ' selected="selected"' : '';?>>Car</option>
+			<option value="Truck" <?=$listing->type == 'Truck' ? ' selected="selected"' : '';?>>Truck</option>
+			<option value="SUV" <?=$listing->type == 'SUV' ? ' selected="selected"' : '';?>>SUV</option>
+			<option value="Sport" <?=$listing->type == 'Sport' ? ' selected="selected"' : '';?>>Sport</option>
+		  </select>
 		</p>
 		<p><label for="address">Address: </label>
-		<input type="text" name="address" id="inputAddress" value="<?= $listings[$id]['address'] ?>">
+		<input type="text" name="address" id="inputAddress" value="<?= $listing->address ?>" required>
 		</p>
 		<p><label for="picture">Picture: </label>
-		<input type="text" name="picture" id="inputPicture" value="<?= $listings[$id]['picture'] ?>" readonly>
+		<input type="text" name="picture" id="inputPicture" value="<?= $listing->picture ?>" readonly>
 		</p>
 		<p><label for="price">Price: </label>
-		<input type="number" name="price" id="inputPrice" value="<?= $listings[$id]['price'] ?>">
+		<input type="number" name="price" id="inputPrice" value="<?= $listing->price ?>" required>
 		</p>
 		<p><label for="description">Description: </label>
-		<input type="text" name="description" id="inputDescription" value="<?= $listings[$id]['description'] ?>">
+		<input type="text" name="description" id="inputDescription" value="<?= $listing->description ?>" required>
 		</p>
 		<input type="submit" value="Submit">
 		<input type="reset" value="Clear">

@@ -9,7 +9,7 @@ if(!Auth::is_logged('user/uID')) {
 require_once($root.'/main/header.php');
 //print_r($_SESSION['email']);
 $user=Auth::getUser();
-echo $user->email.' '.$user->accountType;
+echo $user->ID.' '.$user->name.' '.$user->email.' '.$user->accounttype;
 
 echo '<br />';
 echo '<a class="nav-link" href="index.php" padding-right: 30px;>Home Page</a>';

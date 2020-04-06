@@ -4,24 +4,28 @@ if(!isset($_GET['id'])){
 }
 
 require_once('settings.php');
-require_once($root.'/func/functions.php');
+require_once($root.'/func/DB.php');
 
-$newListings=getArrayOfListings($root.'/data/data.json');
+//$newListings=getArrayOfListings($root.'/data/data.json');
+$record=DB::DB_getListing($_GET['id']);
 $title='Details';
 require_once($root.'/main/header.php');
 require_once($root.'/main/nav.php');
 
-if(!is_numeric($_GET['id']) || $_GET['id']<0 || $_GET['id']>=count($newListings)){
+if(!is_numeric($_GET['id']) || $_GET['id']<0 || $record->rowCount()==0){
 	die('Invalid: go back to the <a href="index.php">Home page</a>');
 	
 }
+
+$listing=DB::DB_createListing($record);
 ?>
 	<div class="container">
-		<h1><?= $newListings[$_GET['id']]->name ?></h1>
-		<img src="<?= $newListings[$_GET['id']]->picture ?>" style="max-width:500px" />
-		<p><span class="badge badge-dark">Address:</span> <?= $newListings[$_GET['id']]->address ?></p>
-		<p><span class="badge badge-dark">Price:</span> <?= $newListings[$_GET['id']]->price ?></p>
-		<p><span class="badge badge-dark">Description:</span> <span><?= $newListings[$_GET['id']]->description ?></span></p>
+		<h1><?= $listing->name ?></h1>
+		<img src="<?= $listing->picture ?>" style="max-width:500px" />
+		<p><span class="badge badge-dark">Type:</span> <?= $listing->type ?></p>
+		<p><span class="badge badge-dark">Address:</span> <?= $listing->address ?></p>
+		<p><span class="badge badge-dark">Price:</span> <?= $listing->price ?></p>
+		<p><span class="badge badge-dark">Description:</span> <span><?= $listing->description ?></span></p>
 	</div>
 	<div class="container">
 	</div>

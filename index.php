@@ -1,9 +1,9 @@
 <?php
 require_once('settings.php');
-require_once('func/functions.php');
+require_once('func/DB.php');
 
 $title="CM Home";
-$newListings=getArrayOfListings('data/data.json');
+$newListings=DB::DB_getArrayOfListings();
 
 require_once($root.'/main/header.php');
 require_once($root.'/main/nav.php');
@@ -18,10 +18,11 @@ require_once($root.'/main/nav.php');
 			  <img src="'.$newListings[$i]->picture.'" class="mr-3" alt="..." style="max-width:96px;max-height:96px">
 			  <div class="media-body">
 				<h5 class="mt-0">'.$newListings[$i]->name.'</h5>
+				<p >Type: '.$newListings[$i]->type.'</p>
 				<p >Price: '.$newListings[$i]->price.'</p>
-				<p><a href="detail.php?id='.$i.'">Details</a>
-				<a href="edit.php?id='.$i.'">Edit</a>
-				<a href="delete.php?id='.$i.'">Delete</a></p>
+				<p><a href="detail.php?id='.$newListings[$i]->ID.'">Details</a>
+				<a href="edit.php?id='.$newListings[$i]->ID.'">Edit</a>
+				<a href="delete.php?id='.$newListings[$i]->ID.'">Delete</a></p>
 			  </div>
 			</div>';
 		}

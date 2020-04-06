@@ -1,5 +1,5 @@
 <?php
-$title='Signup';
+$title='Signin';
 require_once('../settings.php');
 require_once($root.'/auth/auth_functions.php');
 if(Auth::is_logged('user/uID')) {
@@ -7,7 +7,7 @@ if(Auth::is_logged('user/uID')) {
 }
 
 if(count($_POST)>0){
-	$error=Auth::signin($root.'/data/users.csv.php','user/uID','private.php');
+	$error=Auth::signin($root.'/data/users.csv.php','user/uID',$http_root.'auth/private.php');
 	if(isset($error{0})) {
 		echo '<div class="alert alert-danger" role="alert">'.$error.'</div>';
 	} else {

@@ -17,6 +17,8 @@ require_once($root.'/main/header.php');
 ?>
 
 <form action="auth/signup.php" method="POST">
+	Name
+	<input type="name" name="name" /><br />
 	E-mail
 	<input type="email" name="email" required /><br />
 	Password
