@@ -3,6 +3,10 @@ $title='Signin';
 require_once('../settings.php');
 require_once($root.'/auth/auth_functions.php');
 if(Auth::is_logged('user/uID')) {
+	$user = Auth::getUser();
+	if($user->accounttype == "admin") {
+		header('location: admin_page.php');
+	}
 	header('location: private.php');
 }
 

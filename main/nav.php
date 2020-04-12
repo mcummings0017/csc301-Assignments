@@ -21,6 +21,12 @@
 					  <li class="nav-item">
 						  <a class="nav-link" href="auth/private.php" padding-right: 30px;>Private</a>
 					  </li>';
+					  $user = Auth::getUser();
+					  if($user->accounttype == "admin") {
+						  echo '<li class="nav-item">
+								<a class="nav-link" href="auth/admin_page.php" padding-right: 30px;>Admin</a>
+								</li>';
+					  }
 			} else {
 				echo '<li class="nav-item">
 						  <a class="nav-link" href="auth/signup.php" padding-right: 30px;>Sign Up</a>

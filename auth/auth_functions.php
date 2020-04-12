@@ -58,6 +58,7 @@ class Auth {
 			header('location: '.$success_URL);
 		}
 	}
+	
 	static function signin($database_file,$user_key,$success_URL){
 		if(count($_POST)>0){
 		//if the user sends the form:
@@ -142,6 +143,16 @@ class Auth {
 
 	static function getUser() {
 		return unserialize($_SESSION['user']);
+	}
+	
+	static function validateEmail() {
+		if(!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
+			return 'Please enter a valid email address';
+		}
+		
+		if(DB::getUserRow($_POST['email'])->rowCount()>0) {
+			return 'The email you entered is already associated with an account.';
+		}
 	}
 }
 

@@ -63,10 +63,41 @@ class DB {
 		return $newArray;
 	}
 	
+	public static function DB_getArrayOfListings2() {
+		require_once('../settings.php');
+		require_once($root.'/class/Listing.php');
+		$pdo=DB::db_connect();
+		$result=$pdo->query('SELECT * FROM listings');
+
+		$newArray=array();
+		while($record=$result->fetch()) {
+			$listing=new Listing();
+			$listing->ID=$record['ID'];
+			$listing->name=$record['name'];
+			$listing->type=$record['type'];
+			$listing->address=$record['address'];
+			$listing->picture=$record['picture'];
+			$listing->price=$record['price'];
+			$listing->description=$record['description'];
+			array_push($newArray, $listing);
+		}
+
+		return $newArray;
+	}
+
 	public static function DB_getListing($id) {
 		require_once('class/Listing.php');
 		$pdo=DB::db_connect();
 		$record=$pdo->query('SELECT * FROM listings WHERE ID='.$id);
+		
+		return $record;
+	}
+	
+	public static function DB_getUser($id) {
+		require_once('../settings.php');
+		require_once('../class/Listing.php');
+		$pdo=DB::db_connect();
+		$record=$pdo->query('SELECT * FROM users WHERE ID='.$id);
 		
 		return $record;
 	}
@@ -87,6 +118,12 @@ class DB {
 	public static function DB_deleteListing($id) {
 		$pdo=DB::db_connect();
 		$pdo->query('DELETE FROM listings WHERE ID='.$id);
+		$pdo=null;
+	}
+	
+	public static function DB_deleteUser($id) {
+		$pdo=DB::db_connect();
+		$pdo->query('DELETE FROM users WHERE ID='.$id);
 		$pdo=null;
 	}
 	
