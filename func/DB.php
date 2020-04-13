@@ -28,19 +28,19 @@ class DB {
 		return $r;
 	}
 	
-	public static function DB_ToArray($filename) {
-	$json_string=file_get_contents($filename);
-	$array=json_decode($json_string, true);
-	return $array;
-	}
+	// public static function DB_ToArray($filename) {
+	// $json_string=file_get_contents($filename);
+	// $array=json_decode($json_string, true);
+	// return $array;
+	// }
 
-	public static function DB_read($filename) {
-		$handle=fopen($filename,'r');
-		$temp='';
-		while(!feof($handle)) $temp.=fgets($handle);
-		fclose($handle);
-		return $temp;
-	}
+	// public static function DB_read($filename) {
+		// $handle=fopen($filename,'r');
+		// $temp='';
+		// while(!feof($handle)) $temp.=fgets($handle);
+		// fclose($handle);
+		// return $temp;
+	// }
 
 	public static function DB_getArrayOfListings() {
 		require_once('class/Listing.php');
@@ -100,19 +100,6 @@ class DB {
 		$record=$pdo->query('SELECT * FROM users WHERE ID='.$id);
 		
 		return $record;
-	}
-	
-	public static function DB_createListing($record) {
-		$record=$record->fetch();
-		$listing=new Listing();
-		$listing->ID=$record['ID'];
-		$listing->name=$record['name'];
-		$listing->type=$record['type'];
-		$listing->address=$record['address'];
-		$listing->picture=$record['picture'];
-		$listing->price=$record['price'];
-		$listing->description=$record['description'];
-		return $listing;
 	}
 	
 	public static function DB_deleteListing($id) {

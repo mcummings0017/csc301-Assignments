@@ -15,9 +15,9 @@ require_once($root.'/main/header.php');
 
 //echo '<button onclick="document.location.href=\'auth/admin_index.php\'">Listing Page</button>';
 //echo '<br />';
-echo '<button onclick="document.location.href=\'auth/admin_create_user.php\'">Create User Page</button>';
+echo '<button onclick="document.location.href=\''.$http_root.'admin/admin_create_user.php\'">Create User Page</button>';
 echo '<br />';
-echo '<button onclick="document.location.href=\'auth/admin_users.php\'">Edit Users Page</button>';
+echo '<button onclick="document.location.href=\''.$http_root.'admin/admin_users.php\'">Edit Users Page</button>';
 echo '<br />';
 echo '<a class="nav-link" href="index.php" padding-right: 30px;>Home Page</a>';
 

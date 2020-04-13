@@ -6,11 +6,19 @@ class User {
 	public $name;
 	public $accounttype;
 	
-	public function __construct($email="temp", $password="temp", $accounttype="user", $name="temp") {
-		$this->email=$email;
-		$this->password=$password;
-		$this->accounttype=$accounttype;
-		$this->name=$name;
+	function __construct($record=null, $id=null) {
+		if($record==null && $id==null) {
+			return;
+		}
+		if(isset($id)) {
+			$record=DB::DB_getUser($id);
+			$record=$record->fetch();
+		}
+		$this->ID=$record['ID'];
+		$this->email=$record['email'];
+		$this->password=$record['password'];
+		$this->accounttype=$record['accounttype'];
+		$this->name=$record['name'];
 	}
 	
 	public function createUser() {

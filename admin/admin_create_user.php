@@ -18,7 +18,7 @@ require_once($root.'/main/header.php');
 
 ?>
 
-<form action="auth/admin_create_user.php" method="POST">
+<form action="admin/admin_create_user.php" method="POST">
 	Name
 	<input type="name" name="name" /><br />
 	E-mail

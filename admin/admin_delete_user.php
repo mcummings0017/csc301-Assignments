@@ -27,7 +27,7 @@ if(!is_numeric($_GET['id']) || $_GET['id']<0 || $record->rowCount()==0){
 }
 
 $record=$record->fetch();
-$newUser=new User($record['email'], $record['password'], $record['accounttype'], $record['name']);
+$newUser=new User($record);
 $newUser->ID=$id;
 
 if (!isset($_GET['id'])){

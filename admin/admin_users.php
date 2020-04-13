@@ -43,8 +43,8 @@ require_once($root.'/main/header.php');
 				<p >Name: '.$newUsers[$i]->name.'</p>
 				<p >Email: '.$newUsers[$i]->email.'</p>
 				<p >Account Type: '.$newUsers[$i]->accounttype.'</p>
-				<a href="auth/admin_edit_user.php?id='.$newUsers[$i]->ID.'">Edit</a>
-				<a href="auth/admin_delete_user.php?id='.$newUsers[$i]->ID.'">Delete</a></p>
+				<a href="admin/admin_edit_user.php?id='.$newUsers[$i]->ID.'">Edit</a>
+				<a href="admin/admin_delete_user.php?id='.$newUsers[$i]->ID.'">Delete</a></p>
 			  </div>
 			</div>';
 		}

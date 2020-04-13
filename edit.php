@@ -45,7 +45,9 @@ if(is_numeric($id) && $id>=0) {
 	}
 }
 
-$listing=DB::DB_createListing($record);
+require_once($root.'/class/Listing.php');
+$record=$record->fetch();
+$listing=new Listing($record);
 
 function checkType($type) {
 	print_r($listing->type);
@@ -89,7 +91,7 @@ function checkType($type) {
 		<input type="text" name="description" id="inputDescription" value="<?= $listing->description ?>" required>
 		</p>
 		<input type="submit" value="Submit">
-		<input type="reset" value="Clear">
+		<input type="reset" value="Reset">
 		</form>
   
   

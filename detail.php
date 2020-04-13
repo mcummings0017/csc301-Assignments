@@ -17,7 +17,9 @@ if(!is_numeric($_GET['id']) || $_GET['id']<0 || $record->rowCount()==0){
 	
 }
 
-$listing=DB::DB_createListing($record);
+require_once($root.'/class/Listing.php');
+$record=$record->fetch();
+$listing=new Listing($record);
 ?>
 	<div class="container">
 		<h1><?= $listing->name ?></h1>

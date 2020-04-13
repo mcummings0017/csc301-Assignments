@@ -24,7 +24,7 @@
 					  $user = Auth::getUser();
 					  if($user->accounttype == "admin") {
 						  echo '<li class="nav-item">
-								<a class="nav-link" href="auth/admin_page.php" padding-right: 30px;>Admin</a>
+								<a class="nav-link" href="'.$http_root.'admin/admin_page.php" padding-right: 30px;>Admin</a>
 								</li>';
 					  }
 			} else {

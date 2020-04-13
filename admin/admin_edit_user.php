@@ -20,7 +20,7 @@ if(!is_numeric($_GET['id']) || $_GET['id']<0 || $record->rowCount()==0){
 }
 
 $record=$record->fetch();
-$newUser=new User($record['email'], $record['password'], $record['accounttype'], $record['name']);
+$newUser=new User($record);
 
 if(is_numeric($id) && $id>=0) {
 	if(!empty($_POST["email"])
@@ -65,7 +65,7 @@ if(is_numeric($id) && $id>=0) {
 		<input type="text" name="accounttype" id="inputAccountType" value="<?= $newUser->accounttype ?>" required>
 		</p>
 		<input type="submit" value="Submit">
-		<input type="reset" value="Clear">
+		<input type="reset" value="Reset">
 		</form>
   
   

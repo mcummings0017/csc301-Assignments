@@ -21,7 +21,10 @@ $record=DB::DB_getListing($id);
 if(!is_numeric($_GET['id']) || $_GET['id']<0 || $record->rowCount()==0){
 	die('Invalid: go back to the <a href="index.php">Home page</a>');
 }
-$listing=DB::DB_createListing($record);
+
+require_once($root.'/class/Listing.php');
+$record=$record->fetch();
+$listing=new Listing($record);
 ?>
 
 <!doctype html>

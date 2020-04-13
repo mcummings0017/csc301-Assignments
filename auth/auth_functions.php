@@ -53,7 +53,11 @@ class Auth {
 			// fclose($h);
 			
 			//Update mysql database
-			$user = New User($_POST['email'], $_POST['password'], "user", $_POST['name']);
+			$user = New User();
+			$user->email=$_POST['email'];
+			$user->password=$_POST['password'];
+			$user->accounttype="user";
+			$user->name=$_POST['name'];
 			$user->createUser();
 			header('location: '.$success_URL);
 		}
@@ -113,7 +117,7 @@ class Auth {
 				}
 				$_SESSION[$user_key]=$userid;
 				$_SESSION['email']=$_POST['email'];
-				$usr=New User($record['email'], $record['password'], $record['accounttype'], $record['name']);
+				$usr=New User($record);
 				$usr->ID=$record['ID'];
 				$_SESSION['user']=serialize($usr);
 				header('location:'.$success_URL);
