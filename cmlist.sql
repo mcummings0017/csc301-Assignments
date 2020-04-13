@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 12, 2020 at 02:21 AM
+-- Generation Time: Apr 13, 2020 at 03:04 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.1
 
@@ -81,12 +81,7 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`ID`, `name`, `email`, `password`, `accounttype`) VALUES
 (1, NULL, 'db@db.com', '$2y$10$nEBTWu9ADcESfZ.jpjLJ2uyjtxJ91MbN9jyIltc9ckx.CiZtLLIVS', 'admin'),
 (10, 'test name', 't@t.com', '$2y$10$IMv73k1wkLQKyg0iI7/cGOIf9rMwgShmKTOkjn4hjDny3TZKj9sP6', 'user'),
-(11, '', '5@5.com', '$2y$10$y2TxZAmyX.D3Wl0wZIIrI.6PtjJ/HdBZgaaKd9/YMVomambAgxiBy', 'user'),
-(12, 'Mike', 'mike@mike.com', '$2y$10$Gdmk4DnUDlDoAfIApKZ/oe5IcvvFmB5Tb352ozPdOYxAw3WA5B0NS', 'user'),
-(13, 'p', 'p@p.com', '$2y$10$8lKeHmM3ZGaPqBybnJmZve7garmdKL5P77ECcXLxb61xUssc3QTY6', 'user'),
-(14, 'nnn', 'n@n.com', '$2y$10$nEBTWu9ADcESfZ.jpjLJ2uyjtxJ91MbN9jyIltc9ckx.CiZtLLIVS', 'user'),
-(15, 'f@f.com', 'f@f.com', '$2y$10$dEkJ4I/pt2LgctI4onL9SOzb0DtH0AIGmYDPEz1KpMhdzd83xUsgy', 'user'),
-(17, 'g@g.com', 'g@g.com', '$2y$10$N1aMvKXuGVA/5T3MODCkFufB.mgv5m8X8OGrdcsKNIFLUbBwjwXDm', 'user');
+(12, 'Mike', 'mike@mike.com', '$2y$10$Gdmk4DnUDlDoAfIApKZ/oe5IcvvFmB5Tb352ozPdOYxAw3WA5B0NS', 'user');
 
 --
 -- Indexes for dumped tables
@@ -128,13 +123,13 @@ ALTER TABLE `favorites`
 -- AUTO_INCREMENT for table `listings`
 --
 ALTER TABLE `listings`
-  MODIFY `ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- Constraints for dumped tables
