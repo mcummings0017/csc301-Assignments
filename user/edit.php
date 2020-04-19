@@ -1,13 +1,20 @@
 <?php
-require_once('settings.php');
-require_once($root.'/func/DB.php');
-//$filename='data/data.json';
+require_once('../settings.php');
+require_once(ROOT.'/func/DB.php');
+require_once(ROOT.'/auth/auth_functions.php');
+
+if(!Auth::is_logged('user/uID')) {
+	header('location: '.HTTP_ROOT.'auth/signin.php');
+}
+
+$user = Auth::getUser();
+
 $id=$_GET['id'];
-//$listings=jsonToArray($filename);
+
 $record=DB::DB_getListing($id);
 
 if(!is_numeric($_GET['id']) || $_GET['id']<0 || $record->rowCount()==0){
-	die('Invalid: go back to the <a href="index.php">Home page</a>');
+	die('Invalid: go back to the <a href="'.HTTP_ROOT.'user/user_index.php">Home page</a>');
 }
 
 if(is_numeric($id) && $id>=0) {
@@ -17,16 +24,7 @@ if(is_numeric($id) && $id>=0) {
 		&& !empty($_POST["picture"])
 		&& !empty($_POST["price"])
 		&& !empty($_POST["description"])) {
-			/*$data=array(
-				"name"  => $_POST["name"],
-				"address" => $_POST["address"],
-				"picture" => $_POST["picture"],
-				"price" => floatval($_POST["price"]),
-				"description" => $_POST["description"]
-			);
-			modifyJSON($filename,$id,$data);
-			*/
-			require_once($root.'/class/Listing.php');
+			require_once(ROOT.'/class/Listing.php');
 			$newListing=new Listing();
 			$newListing->ID=$id;
 			$newListing->name=$_POST["name"];
@@ -39,13 +37,13 @@ if(is_numeric($id) && $id>=0) {
 			$newListing->modifyListing();
 			
 			//echo "Listing updated for ".$_POST["name"];
-			die("Listing updated for ".$_POST["name"].'!  Go back to the <a href="index.php">Home page</a>');
+			die("Listing updated for ".$_POST["name"].'!  Go back to the <a href="'.HTTP_ROOT.'user/user_index.php">Home page</a>');
 	} else {
 		echo "Please fill out all information below!";
 	}
 }
 
-require_once($root.'/class/Listing.php');
+require_once(ROOT.'/class/Listing.php');
 $record=$record->fetch();
 $listing=new Listing($record);
 
@@ -66,7 +64,7 @@ function checkType($type) {
   </head>
   <body>
 		
-		<form action="<?= 'edit.php?id='.$id ?>" method="post">
+		<form action="<?= HTTP_ROOT.'user/edit.php?id='.$id ?>" method="post">
 		<p><label for="name">Name: </label>
 		<input type="text" name="name" id="inputName" value="<?= $listing->name ?>" required>
 		</p>

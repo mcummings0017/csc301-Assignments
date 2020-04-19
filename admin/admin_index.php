@@ -1,21 +1,23 @@
 <?php
 require_once('../settings.php');
-require_once($root.'/func/DB.php');
-require_once($root.'/auth/auth_functions.php');
+require_once(ROOT.'/func/DB.php');
+require_once(ROOT.'/auth/auth_functions.php');
 
 if(!Auth::is_logged('user/uID')) {
-	header('location: signin.php');
+	header('location: '.HTTP_ROOT.'auth/signin.php');
 }
 
 $user = Auth::getUser();
 if($user->accounttype != "admin") {
-	header('location: private.php');
+	header('location: '.HTTP_ROOT.'auth/private.php');
 }
 
 $title="Admin Index";
-$newListings=DB::DB_getArrayOfListings2();
+$newListings=DB::DB_getArrayOfListings();
 
-require_once($root.'/main/header.php');
+require_once(ROOT.'/main/header.php');
+
+echo '<a class="nav-link" href="'.HTTP_ROOT.'admin/admin_page.php" padding-right: 30px;>Admin Page</a>';
 ?>
    <div class="container">
 		<h1>All Listings</h1>
@@ -29,9 +31,8 @@ require_once($root.'/main/header.php');
 				<h5 class="mt-0">'.$newListings[$i]->name.'</h5>
 				<p >Type: '.$newListings[$i]->type.'</p>
 				<p >Price: '.$newListings[$i]->price.'</p>
-				<p><a href="detail.php?id='.$newListings[$i]->ID.'">Details</a>
-				<a href="edit.php?id='.$newListings[$i]->ID.'">Edit</a>
-				<a href="delete.php?id='.$newListings[$i]->ID.'">Delete</a></p>
+				<a href="'.HTTP_ROOT.'admin/admin_edit_listing.php?id='.$newListings[$i]->ID.'">Edit</a>
+				<a href="'.HTTP_ROOT.'admin/admin_delete_listing.php?id='.$newListings[$i]->ID.'">Delete</a></p>
 			  </div>
 			</div>';
 		}
@@ -42,5 +43,5 @@ require_once($root.'/main/header.php');
 		?>
 	</div>
 <?php
-require_once($root.'/main/footer.php');
+require_once(ROOT.'/main/footer.php');
 ?>

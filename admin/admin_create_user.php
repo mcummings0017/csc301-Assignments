@@ -1,11 +1,11 @@
 <?php
 $title='Admin Create User';
 require_once('../settings.php');
-require_once($root.'/auth/auth_functions.php');
+require_once(ROOT.'/auth/auth_functions.php');
 
 $user = Auth::getUser();
 if($user->accounttype != "admin") {
-	header('location: private.php');
+	header('location: '.HTTP_ROOT.'auth/private.php');
 }
 
 if(count($_POST)>0){
@@ -14,7 +14,7 @@ if(count($_POST)>0){
 	else echo '<div class="alert alert-success" role="alert">You made it!!!!!!!!!!!</div>';
 }
 
-require_once($root.'/main/header.php');
+require_once(ROOT.'/main/header.php');
 
 ?>
 
@@ -27,4 +27,4 @@ require_once($root.'/main/header.php');
 	<input type="password" name="password" minlength="8" required /><br />
 	<button type="submit">Ceate account</button>
 </form>
-<?php require_once($root.'/main/footer.php'); ?>
+<?php require_once(ROOT.'/main/footer.php'); ?>

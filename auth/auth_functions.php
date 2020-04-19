@@ -1,6 +1,6 @@
 <?php
-require_once($root.'/class/User.php');
-require_once($root.'/func/DB.php');
+require_once(ROOT.'/class/User.php');
+require_once(ROOT.'/func/DB.php');
 
 session_start();
 

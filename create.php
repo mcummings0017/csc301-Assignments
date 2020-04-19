@@ -1,7 +1,13 @@
 <?php
 require_once('settings.php');
 require_once($root.'/class/Listing.php');
+require_once(ROOT.'/auth/auth_functions.php');
 //$file = 'data/data.json';
+
+if(!Auth::is_logged('user/uID')) {
+	header('location: '.HTTP_ROOT.'auth/signin.php');
+}
+
 if(!empty($_POST["name"])
 	&& !empty($_POST["address"])
 	&& !empty($_POST["picture"])
@@ -20,7 +26,10 @@ if(!empty($_POST["name"])
 		array_push($listings, $data);
 		writeAllJSON($file,$listings);
 		*/
+		$user=Auth::getUser();
+
 		$listing=new Listing();
+		$listing->user_ID=$user->ID;
 		$listing->name=$_POST["name"];
 		$listing->type=$_POST["type"];
 		$listing->address=$_POST["address"];

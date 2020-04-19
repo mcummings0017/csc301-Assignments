@@ -1,20 +1,20 @@
 <?php
 require_once('../settings.php');
-require_once($root.'/func/DB.php');
+require_once(ROOT.'/func/DB.php');
 $title="Admin Users Page";
 
-require_once($root.'/auth/auth_functions.php');
+require_once(ROOT.'/auth/auth_functions.php');
 
 if(!Auth::is_logged('user/uID')) {
-	header('location: signin.php');
+	header('location: '.HTTP_ROOT.'auth/signin.php');
 }
 
 $user = Auth::getUser();
 if($user->accounttype != "admin") {
-	header('location: private.php');
+	header('location: '.HTTP_ROOT.'auth/private.php');
 }
 
-require_once($root.'/class/User.php');
+require_once(ROOT.'/class/User.php');
 $pdo=DB::db_connect();
 $result=$pdo->query('SELECT * FROM users');
 
@@ -28,8 +28,8 @@ while($record=$result->fetch()) {
 	array_push($newUsers, $user);
 }
 
-
-require_once($root.'/main/header.php');
+echo '<a class="nav-link" href="'.HTTP_ROOT.'admin/admin_page.php" padding-right: 30px;>Admin Page</a>';
+require_once(ROOT.'/main/header.php');
 ?>
    <div class="container">
 		<h1>All Users</h1>
@@ -55,5 +55,5 @@ require_once($root.'/main/header.php');
 		?>
 	</div>
 <?php
-require_once($root.'/main/footer.php');
+require_once(ROOT.'/main/footer.php');
 ?>

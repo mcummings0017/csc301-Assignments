@@ -1,4 +1,6 @@
 <?php
+require_once(ROOT.'/func/DB.php');
+
 class User {
 	public $ID;
 	public $email;
@@ -22,7 +24,7 @@ class User {
 	}
 	
 	public function createUser() {
-		require_once('../func/DB.php');
+		//require_once('../func/DB.php');
 		$pdo=DB::db_connect();
 		$q=$pdo->prepare('INSERT INTO users(name,email,password,accounttype) VALUES(?,?,?,?)');
 		$q->execute([$this->name, $this->email, $this->password, $this->accounttype]);
@@ -30,7 +32,7 @@ class User {
 	}
 	
 	public function modifyUser() {
-		require_once('../func/DB.php');
+		//require_once('../func/DB.php');
 		$pdo=DB::db_connect();
 		$q=$pdo->prepare('UPDATE users SET email=?,password=?,name=?,accounttype=? WHERE ID=?');
 		$q->execute([$this->email, $this->password, $this->name, $this->accounttype, $this->ID]);

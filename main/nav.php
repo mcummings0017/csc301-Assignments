@@ -1,4 +1,4 @@
-<?php require_once($root.'/auth/auth_functions.php'); ?>
+<?php require_once(ROOT.'/auth/auth_functions.php'); ?>
 <!-- Image and text -->
 <nav class="navbar navbar-expand navbar-light bg-danger text-white list-style-type-none">
   <a class="navbar-brand text-white" href="#">
@@ -10,12 +10,12 @@
 		<li class="nav-item">
 			<a class="nav-link" href="index.php" padding-right: 30px;>Home page</a>
 		</li>
-		<li class="nav-item">
-			<a class="nav-link" href="create.php" padding-right: 30px;>Create New Listing</a>
-		</li>
 		<?php 
 			if (Auth::is_logged('user/uID')) {
 				echo '<li class="nav-item">
+						<a class="nav-link" href="create.php" padding-right: 30px;>Create New Listing</a>
+					  </li>
+					  <li class="nav-item">
 						  <a class="nav-link" href="auth/signout.php" padding-right: 30px;>Sign Out</a>
 					  </li>
 					  <li class="nav-item">

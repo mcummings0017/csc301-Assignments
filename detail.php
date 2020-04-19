@@ -4,20 +4,20 @@ if(!isset($_GET['id'])){
 }
 
 require_once('settings.php');
-require_once($root.'/func/DB.php');
+require_once(ROOT.'/func/DB.php');
 
-//$newListings=getArrayOfListings($root.'/data/data.json');
+//$newListings=getArrayOfListings(ROOT.'/data/data.json');
 $record=DB::DB_getListing($_GET['id']);
 $title='Details';
-require_once($root.'/main/header.php');
-require_once($root.'/main/nav.php');
+require_once(ROOT.'/main/header.php');
+require_once(ROOT.'/main/nav.php');
 
 if(!is_numeric($_GET['id']) || $_GET['id']<0 || $record->rowCount()==0){
 	die('Invalid: go back to the <a href="index.php">Home page</a>');
 	
 }
 
-require_once($root.'/class/Listing.php');
+require_once(ROOT.'/class/Listing.php');
 $record=$record->fetch();
 $listing=new Listing($record);
 ?>
@@ -32,6 +32,6 @@ $listing=new Listing($record);
 	<div class="container">
 	</div>
 <?php
-require_once($root.'/main/footer.php');
+require_once(ROOT.'/main/footer.php');
 ?>
 

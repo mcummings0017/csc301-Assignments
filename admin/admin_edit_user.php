@@ -1,15 +1,15 @@
 <?php
 require_once('../settings.php');
-require_once($root.'/func/DB.php');
-require_once($root.'/auth/auth_functions.php');
+require_once(ROOT.'/func/DB.php');
+require_once(ROOT.'/auth/auth_functions.php');
 
 if(!Auth::is_logged('user/uID')) {
-	header('location: signin.php');
+	header('location: '.HTTP_ROOT.'auth/signin.php');
 }
 
 $user = Auth::getUser();
 if($user->accounttype != "admin") {
-	header('location: private.php');
+	header('location: '.HTTP_ROOT.'auth/private.php');
 }
 
 $id=$_GET['id'];
@@ -30,7 +30,7 @@ if(is_numeric($id) && $id>=0) {
 			if(isset($error{0})) {
 				echo '<div class="alert alert-danger" role="alert">'.$error.'</div>';
 			} else {
-				require_once($root.'/class/User.php');
+				require_once(ROOT.'/class/User.php');
 				$newUser->ID=$id;
 				$newUser->email=$_POST["email"];
 				$newUser->accounttype=$_POST["accounttype"];

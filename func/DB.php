@@ -27,23 +27,9 @@ class DB {
 		$pdo=null;
 		return $r;
 	}
-	
-	// public static function DB_ToArray($filename) {
-	// $json_string=file_get_contents($filename);
-	// $array=json_decode($json_string, true);
-	// return $array;
-	// }
-
-	// public static function DB_read($filename) {
-		// $handle=fopen($filename,'r');
-		// $temp='';
-		// while(!feof($handle)) $temp.=fgets($handle);
-		// fclose($handle);
-		// return $temp;
-	// }
 
 	public static function DB_getArrayOfListings() {
-		require_once('class/Listing.php');
+		require_once(ROOT.'/class/Listing.php');
 		$pdo=DB::db_connect();
 		$result=$pdo->query('SELECT * FROM listings');
 		
@@ -63,11 +49,10 @@ class DB {
 		return $newArray;
 	}
 	
-	public static function DB_getArrayOfListings2() {
-		require_once('../settings.php');
-		require_once($root.'/class/Listing.php');
+	public static function DB_getUserListings($user_ID) {
+		require_once(ROOT.'/class/Listing.php');
 		$pdo=DB::db_connect();
-		$result=$pdo->query('SELECT * FROM listings');
+		$result=$pdo->query('SELECT * FROM listings WHERE user_ID='.$user_ID);
 
 		$newArray=array();
 		while($record=$result->fetch()) {
@@ -86,7 +71,7 @@ class DB {
 	}
 
 	public static function DB_getListing($id) {
-		require_once('class/Listing.php');
+		require_once(ROOT.'/class/Listing.php');
 		$pdo=DB::db_connect();
 		$record=$pdo->query('SELECT * FROM listings WHERE ID='.$id);
 		
@@ -94,8 +79,7 @@ class DB {
 	}
 	
 	public static function DB_getUser($id) {
-		require_once('../settings.php');
-		require_once('../class/Listing.php');
+		require_once(ROOT.'/class/Listing.php');
 		$pdo=DB::db_connect();
 		$record=$pdo->query('SELECT * FROM users WHERE ID='.$id);
 		
@@ -113,31 +97,5 @@ class DB {
 		$pdo->query('DELETE FROM users WHERE ID='.$id);
 		$pdo=null;
 	}
-	
-	/*
-	//Execute a query and retrieve information from the database
-	$result=$pdo->query('SELECT * FROM users');
-
-	//Print number of rows in query
-	echo $result->rowCount();
-
-	//Print results
-	echo '<pre>';
-	while($record=$result->fetch()){
-		print_r($record);
-		echo '<hr>';
-	}
-
-	//INSERT into db
-	//$pdo->query('INSERT INTO users(email,accounttype) VALUES("u@u.com", "user")');
-	//echo $pdo->lastInsertId();
-
-	//MODIFY
-	//$pdo->query('UPDATE users SET email="p@p.com" WHERE ID=1');
-
-	//DELETE
-	//$pdo->query('DELETE FROM users WHERE ID=1');
-
-	*/
 }
 ?>

@@ -1,12 +1,17 @@
 <?php
-require_once('settings.php');
-require_once('func/DB.php');
+require_once('../settings.php');
+require_once(ROOT.'/func/DB.php');
+require_once(ROOT.'/auth/auth_functions.php');
+if(!Auth::is_logged('user/uID')) {
+	header('location: '.ROOT.'/signin.php');
+}
 
-$title="CM Home";
-$newListings=DB::DB_getArrayOfListings();
+$title="My Listings";
+$user=Auth::getUser();
+$newListings=DB::DB_getUserListings($user->ID);
 
+echo '<a class="nav-link" href="'.HTTP_ROOT.'auth/private.php" padding-right: 30px;>Private Page</a>';
 require_once(ROOT.'/main/header.php');
-require_once(ROOT.'/main/nav.php');
 ?>
    <div class="container">
 		<h1>All Listings</h1>
@@ -20,7 +25,9 @@ require_once(ROOT.'/main/nav.php');
 				<h5 class="mt-0">'.$newListings[$i]->name.'</h5>
 				<p >Type: '.$newListings[$i]->type.'</p>
 				<p >Price: '.$newListings[$i]->price.'</p>
-				<p><a href="detail.php?id='.$newListings[$i]->ID.'">Details</a>
+				<p><a href="'.HTTP_ROOT.'detail.php?id='.$newListings[$i]->ID.'">Details</a>
+				<a href="'.HTTP_ROOT.'user/edit.php?id='.$newListings[$i]->ID.'">Edit</a>
+				<a href="'.HTTP_ROOT.'user/delete.php?id='.$newListings[$i]->ID.'">Delete</a></p>
 			  </div>
 			</div>';
 		}

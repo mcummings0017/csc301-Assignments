@@ -1,15 +1,15 @@
 <?php
 require_once('../settings.php');
-require_once($root.'/func/DB.php');
-require_once($root.'/auth/auth_functions.php');
+require_once(ROOT.'/func/DB.php');
+require_once(ROOT.'/auth/auth_functions.php');
 
 if(!Auth::is_logged('user/uID')) {
-	header('location: signin.php');
+	header('location: '.HTTP_ROOT.'auth/signin.php');
 }
 
 $user = Auth::getUser();
 if($user->accounttype != "admin") {
-	header('location: private.php');
+	header('location: '.HTTP_ROOT.'auth/private.php');
 }
 
 if(!empty($_POST["id"])) {
