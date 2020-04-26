@@ -28,8 +28,9 @@ while($record=$result->fetch()) {
 	array_push($newUsers, $user);
 }
 
-echo '<a class="nav-link" href="'.HTTP_ROOT.'admin/admin_page.php" padding-right: 30px;>Admin Page</a>';
 require_once(ROOT.'/main/header.php');
+require_once(ROOT.'/main/nav.php');
+echo '<a class="nav-link" href="'.HTTP_ROOT.'admin/admin_page.php" padding-right: 30px;>Admin Page</a>';
 ?>
    <div class="container">
 		<h1>All Users</h1>

@@ -10,8 +10,9 @@ $title="My Listings";
 $user=Auth::getUser();
 $newListings=DB::DB_getUserListings($user->ID);
 
-echo '<a class="nav-link" href="'.HTTP_ROOT.'auth/private.php" padding-right: 30px;>Private Page</a>';
 require_once(ROOT.'/main/header.php');
+require_once(ROOT.'/main/nav.php');
+echo '<a class="nav-link" href="'.HTTP_ROOT.'auth/private.php" padding-right: 30px;>Private Page</a>';
 ?>
    <div class="container">
 		<h1>All Listings</h1>

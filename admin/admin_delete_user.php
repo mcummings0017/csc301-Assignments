@@ -13,10 +13,14 @@ if($user->accounttype != "admin") {
 }
 
 if(!empty($_POST["id"])) {
+	if(count(DB::DB_getUserListings($_POST["id"])) == 0) {
 	DB::DB_deleteUser($_POST["id"]);
 	echo "User ".$_POST["name"]." was deleted!";
 	echo "<br />";
-	die('Listing Deleted!  Go back to the <a href="admin_page.php">Admin Page</a>');
+	die('User Deleted!  Go back to the <a href="admin_page.php">Admin Page</a>');
+	} else {
+		die('All listings associated with this user must be deleted first!  Go back to the <a href="admin_page.php">Admin page</a>');
+	}
 }
 
 $id=$_GET['id'];

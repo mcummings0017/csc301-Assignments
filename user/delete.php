@@ -1,29 +1,36 @@
 <?php
 require_once('../settings.php');
 require_once(ROOT.'/func/DB.php');
+require_once(ROOT.'/auth/auth_functions.php');
 
 if(!empty($_POST["id"])) {
 	DB::DB_deleteListing($_POST["id"]);
 	echo "Listing ".$_POST["name"]." was deleted!";
 	echo "<br />";
-	die('Listing Deleted!  Go back to the <a href="'.HTTP_ROOT.'user/user_index.php">Home page</a>');
+	die('Listing Deleted!  Go back to the <a href="'.HTTP_ROOT.'user/user_index.php">User page</a>');
 }
 
 if (!isset($_GET['id'])){
-	die('No id: Please provide a valid id number!  Go back to the <a href="'.HTTP_ROOT.'user/user_index.php">Home page</a>');
+	die('No id: Please provide a valid id number!  Go back to the <a href="'.HTTP_ROOT.'user/user_index.php">User page</a>');
 }
+
+$user = Auth::getUser();
 
 $id=$_GET['id'];
 
 $record=DB::DB_getListing($id);
 
 if(!is_numeric($_GET['id']) || $_GET['id']<0 || $record->rowCount()==0){
-	die('Invalid: go back to the <a href="'.HTTP_ROOT.'user/user_index.php">Home page</a>');
+	die('Invalid ID: go back to the <a href="'.HTTP_ROOT.'user/user_index.php">User page</a>');
 }
 
 require_once(ROOT.'/class/Listing.php');
 $record=$record->fetch();
 $listing=new Listing($record);
+
+if($user->ID != $listing->user_ID){
+	die('Invalid User: go back to the <a href="'.HTTP_ROOT.'user/user_index.php">User page</a>');
+}
 
 ?>
 

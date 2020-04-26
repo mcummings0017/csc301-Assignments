@@ -7,10 +7,10 @@ if(!Auth::is_logged('user/uID')) {
 }
 
 require_once(ROOT.'/main/header.php');
-
+require_once(ROOT.'/main/nav.php');
 $user=Auth::getUser();
 //redirect admin user to admin_page.php
-if($user->accounttype == "admin") {
+if($user->accounttype == "admin" || $user->accounttype == "manager") {
 	header('location: '.HTTP_ROOT.'admin/admin_page.php');
 }
 echo $user->ID.' '.$user->name.' '.$user->email.' '.$user->accounttype;

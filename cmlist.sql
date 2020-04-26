@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 20, 2020 at 01:51 AM
+-- Generation Time: Apr 27, 2020 at 01:54 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.1
 
@@ -59,7 +59,8 @@ INSERT INTO `listings` (`ID`, `user_ID`, `type`, `name`, `address`, `picture`, `
 (2, NULL, 'N/A', 'Toyota Camry 2017', '8400 I-10 Service Road, New Orleans, LA 70127, United States', 'img/camry.jpg', '13000', 'Like new Toyota Camry 2017.  One owner, price negotiable.  Please contact Alex at 859-111-1111 for more information.'),
 (3, NULL, 'N/A', 'Honda Civic 2007', 'address 2', 'img/civic.jpg', '4999', 'Like new Honda Civic 2007.  One owner, price negotiable.  Please contact Rick at 859-111-1111 for more information.'),
 (4, NULL, 'N/A', 'Ford Mustang 2019', 'address 3', 'img/mustang.jpg', '29999', 'Brand new Ford Mustang 2019.  Please contact a representative at Ford motors Florence 859-111-1111 for more information.'),
-(22, 1, 'Car', 'aaa', 'aaa', 'img/mustang.jpg', '111', 'aaaa');
+(22, 1, 'Car', 'aaa', 'aaa', 'img/mustang.jpg', '111', 'aaaa'),
+(26, 10, 'Truck', 'ttt', 'ttt', 'img/mustang.jpg', '111111', 'tttt');
 
 -- --------------------------------------------------------
 
@@ -82,8 +83,6 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`ID`, `name`, `email`, `password`, `accounttype`) VALUES
 (1, NULL, 'db@db.com', '$2y$10$nEBTWu9ADcESfZ.jpjLJ2uyjtxJ91MbN9jyIltc9ckx.CiZtLLIVS', 'admin'),
 (10, 'test name', 't@t.com', '$2y$10$IMv73k1wkLQKyg0iI7/cGOIf9rMwgShmKTOkjn4hjDny3TZKj9sP6', 'user'),
-(12, 'Mike', 'mike@mike.com', '$2y$10$Gdmk4DnUDlDoAfIApKZ/oe5IcvvFmB5Tb352ozPdOYxAw3WA5B0NS', 'user'),
-(21, 'b@b.com', 'b@b.com', '$2y$10$1vgFdGOlOTdjhdUwYSOtmORZ9/HlIcqUFAE1ahVA.sp4rOzskRE8S', 'user'),
 (22, 'manager', 'manager@manager.com', '$2y$10$52vclWv7R0Mr/.ihJhKx1OX1VWcACdW0vKtg.r.YcWCRiIg3AmPLC', 'manager');
 
 --
@@ -126,13 +125,13 @@ ALTER TABLE `favorites`
 -- AUTO_INCREMENT for table `listings`
 --
 ALTER TABLE `listings`
-  MODIFY `ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- Constraints for dumped tables

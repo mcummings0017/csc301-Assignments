@@ -1,4 +1,5 @@
 <?php
+session_start();
 $root=__DIR__;
 define('ROOT',__DIR__);
 

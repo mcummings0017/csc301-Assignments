@@ -14,7 +14,15 @@ $id=$_GET['id'];
 $record=DB::DB_getListing($id);
 
 if(!is_numeric($_GET['id']) || $_GET['id']<0 || $record->rowCount()==0){
-	die('Invalid: go back to the <a href="'.HTTP_ROOT.'user/user_index.php">Home page</a>');
+	die('Invalid ID: go back to the <a href="'.HTTP_ROOT.'user/user_index.php">User page</a>');
+}
+
+require_once(ROOT.'/class/Listing.php');
+$record=$record->fetch();
+$listing=new Listing($record);
+
+if($user->ID != $listing->user_ID){
+	die('Invalid User: go back to the <a href="'.HTTP_ROOT.'user/user_index.php">User page</a>');
 }
 
 if(is_numeric($id) && $id>=0) {
@@ -37,15 +45,11 @@ if(is_numeric($id) && $id>=0) {
 			$newListing->modifyListing();
 			
 			//echo "Listing updated for ".$_POST["name"];
-			die("Listing updated for ".$_POST["name"].'!  Go back to the <a href="'.HTTP_ROOT.'user/user_index.php">Home page</a>');
+			die("Listing updated for ".$_POST["name"].'!  Go back to the <a href="'.HTTP_ROOT.'user/user_index.php">User page</a>');
 	} else {
 		echo "Please fill out all information below!";
 	}
 }
-
-require_once(ROOT.'/class/Listing.php');
-$record=$record->fetch();
-$listing=new Listing($record);
 
 function checkType($type) {
 	print_r($listing->type);

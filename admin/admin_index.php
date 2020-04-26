@@ -8,7 +8,7 @@ if(!Auth::is_logged('user/uID')) {
 }
 
 $user = Auth::getUser();
-if($user->accounttype != "admin") {
+if($user->accounttype != "admin" && $user->accounttype != "manager") {
 	header('location: '.HTTP_ROOT.'auth/private.php');
 }
 
@@ -16,7 +16,7 @@ $title="Admin Index";
 $newListings=DB::DB_getArrayOfListings();
 
 require_once(ROOT.'/main/header.php');
-
+require_once(ROOT.'/main/nav.php');
 echo '<a class="nav-link" href="'.HTTP_ROOT.'admin/admin_page.php" padding-right: 30px;>Admin Page</a>';
 ?>
    <div class="container">

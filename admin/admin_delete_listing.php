@@ -8,7 +8,7 @@ if(!Auth::is_logged('user/uID')) {
 }
 
 $user = Auth::getUser();
-if($user->accounttype != "admin") {
+if($user->accounttype != "admin" && $user->accounttype != "manager") {
 	header('location: '.HTTP_ROOT.'auth/private.php');
 }
 

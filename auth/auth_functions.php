@@ -2,7 +2,8 @@
 require_once(ROOT.'/class/User.php');
 require_once(ROOT.'/func/DB.php');
 
-session_start();
+//moved to settings.php
+//session_start();
 
 class Auth {
 	static function signup($database_file,$success_URL){

@@ -26,7 +26,9 @@ if(is_numeric($id) && $id>=0) {
 	if(!empty($_POST["email"])
 		&& !empty($_POST["name"])
 		&& !empty($_POST["accounttype"])) {
-			$error=Auth::validateEmail();
+			if($_POST["email"] != $newUser->email) {
+				$error=Auth::validateEmail();
+			}
 			if(isset($error{0})) {
 				echo '<div class="alert alert-danger" role="alert">'.$error.'</div>';
 			} else {
@@ -35,7 +37,6 @@ if(is_numeric($id) && $id>=0) {
 				$newUser->email=$_POST["email"];
 				$newUser->accounttype=$_POST["accounttype"];
 				$newUser->name=$_POST["name"];
-				
 				$newUser->modifyUser();
 				
 				//echo "Listing updated for ".$_POST["name"];

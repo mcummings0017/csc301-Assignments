@@ -17,12 +17,14 @@
 					  </li>
 					  <li class="nav-item">
 						  <a class="nav-link" href="auth/signout.php" padding-right: 30px;>Sign Out</a>
-					  </li>
-					  <li class="nav-item">
-						  <a class="nav-link" href="auth/private.php" padding-right: 30px;>Private</a>
 					  </li>';
 					  $user = Auth::getUser();
-					  if($user->accounttype == "admin") {
+					  if($user->accounttype == "user") {
+					  echo '<li class="nav-item">
+							    <a class="nav-link" href="auth/private.php" padding-right: 30px;>Private</a>
+						    </li>';
+					  }
+					  if($user->accounttype == "admin" || $user->accounttype == "manager") {
 						  echo '<li class="nav-item">
 								<a class="nav-link" href="'.$http_root.'admin/admin_page.php" padding-right: 30px;>Admin</a>
 								</li>';

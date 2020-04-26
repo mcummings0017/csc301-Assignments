@@ -20,7 +20,7 @@ if(count($_POST)>0){
 }
 
 require_once($root.'/main/header.php');
-
+require_once(ROOT.'/main/nav.php');
 ?>
 
 <title>Signin</title>

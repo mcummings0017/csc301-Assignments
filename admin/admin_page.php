@@ -7,18 +7,21 @@ if(!Auth::is_logged('user/uID')) {
 }
 
 $user = Auth::getUser();
-if($user->accounttype != "admin") {
+if($user->accounttype != "admin" && $user->accounttype != "manager") {
 	header('location: '.HTTP_ROOT.'auth/private.php');
 }
 
 require_once(ROOT.'/main/header.php');
+require_once(ROOT.'/main/nav.php');
 
 //echo '<button onclick="document.location.href=\'auth/admin_index.php\'">Listing Page</button>';
 //echo '<br />';
-echo '<button onclick="document.location.href=\''.HTTP_ROOT.'admin/admin_create_user.php\'">Create User Page</button>';
-echo '<br />';
-echo '<button onclick="document.location.href=\''.HTTP_ROOT.'admin/admin_users.php\'">Edit Users Page</button>';
-echo '<br />';
+if($user->accounttype == "admin") {
+	echo '<button onclick="document.location.href=\''.HTTP_ROOT.'admin/admin_create_user.php\'">Create User Page</button>';
+	echo '<br />';
+	echo '<button onclick="document.location.href=\''.HTTP_ROOT.'admin/admin_users.php\'">Edit Users Page</button>';
+	echo '<br />';
+}
 echo '<button onclick="document.location.href=\''.HTTP_ROOT.'admin/admin_index.php\'">Edit Listings Page</button>';
 echo '<br />';
 echo '<a class="nav-link" href="index.php" padding-right: 30px;>Home Page</a>';
