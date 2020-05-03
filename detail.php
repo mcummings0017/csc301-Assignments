@@ -14,7 +14,6 @@ require_once(ROOT.'/main/nav.php');
 
 if(!is_numeric($_GET['id']) || $_GET['id']<0 || $record->rowCount()==0){
 	die('Invalid: go back to the <a href="index.php">Home page</a>');
-	
 }
 
 require_once(ROOT.'/class/Listing.php');

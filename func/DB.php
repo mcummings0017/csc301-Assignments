@@ -23,7 +23,8 @@ class DB {
 
 	public static function getUserRow($email) {
 		$pdo=DB::db_connect();
-		$r=$pdo->query('SELECT * FROM users WHERE email="'.$email.'"');
+		$r=$pdo->prepare('SELECT * FROM users WHERE email=?');
+		$r->execute([$email]);
 		$pdo=null;
 		return $r;
 	}
@@ -52,7 +53,8 @@ class DB {
 	public static function DB_getUserListings($user_ID) {
 		require_once(ROOT.'/class/Listing.php');
 		$pdo=DB::db_connect();
-		$result=$pdo->query('SELECT * FROM listings WHERE user_ID='.$user_ID);
+		$result=$pdo->prepare('SELECT * FROM listings WHERE user_ID=?');
+		$result->execute([$user_ID]);
 
 		$newArray=array();
 		while($record=$result->fetch()) {
@@ -73,28 +75,30 @@ class DB {
 	public static function DB_getListing($id) {
 		require_once(ROOT.'/class/Listing.php');
 		$pdo=DB::db_connect();
-		$record=$pdo->query('SELECT * FROM listings WHERE ID='.$id);
-		
+		$record=$pdo->prepare('SELECT * FROM listings WHERE ID=?');
+		$record->execute([$id]);
 		return $record;
 	}
 	
 	public static function DB_getUser($id) {
 		require_once(ROOT.'/class/Listing.php');
 		$pdo=DB::db_connect();
-		$record=$pdo->query('SELECT * FROM users WHERE ID='.$id);
-		
+		$record=$pdo->prepare('SELECT * FROM users WHERE ID=?');
+		$record->execute([$id]);
 		return $record;
 	}
 	
 	public static function DB_deleteListing($id) {
 		$pdo=DB::db_connect();
-		$pdo->query('DELETE FROM listings WHERE ID='.$id);
+		$q=$pdo->prepare('DELETE FROM listings WHERE ID=?');
+		$q->execute([$id]);
 		$pdo=null;
 	}
 	
 	public static function DB_deleteUser($id) {
 		$pdo=DB::db_connect();
-		$pdo->query('DELETE FROM users WHERE ID='.$id);
+		$q=$pdo->prepare('DELETE FROM users WHERE ID=?');
+		$q->execute([$id]);
 		$pdo=null;
 	}
 }
