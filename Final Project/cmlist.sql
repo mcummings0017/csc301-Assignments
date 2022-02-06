@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 06, 2020 at 01:53 AM
+-- Generation Time: Feb 06, 2022 at 04:45 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.1
 
@@ -83,7 +83,8 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`ID`, `name`, `email`, `password`, `accounttype`) VALUES
 (1, NULL, 'db@db.com', '$2y$10$nEBTWu9ADcESfZ.jpjLJ2uyjtxJ91MbN9jyIltc9ckx.CiZtLLIVS', 'admin'),
 (10, 'test name', 't@t.com', '$2y$10$IMv73k1wkLQKyg0iI7/cGOIf9rMwgShmKTOkjn4hjDny3TZKj9sP6', 'user'),
-(22, 'manager', 'manager@manager.com', '$2y$10$52vclWv7R0Mr/.ihJhKx1OX1VWcACdW0vKtg.r.YcWCRiIg3AmPLC', 'manager');
+(22, 'manager', 'manager@manager.com', '$2y$10$52vclWv7R0Mr/.ihJhKx1OX1VWcACdW0vKtg.r.YcWCRiIg3AmPLC', 'manager'),
+(30, 'Mike C', 'mike@mike.com', '$2y$10$1t7ZgJF5bQF..iOOO.0fXeaBMOBefOaFc0B91q8FBe4wosNGv.WQa', 'admin');
 
 --
 -- Indexes for dumped tables
@@ -131,7 +132,7 @@ ALTER TABLE `listings`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- Constraints for dumped tables
